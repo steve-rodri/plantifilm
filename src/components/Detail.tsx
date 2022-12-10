@@ -13,7 +13,7 @@ interface Props {
 
 export const Detail = (props: Props) => {
   return (
-    <Stack>
+    <Stack px={10}>
       <DetailHeader {...props} />
       <DetailSubHeader {...props} />
       <Description {...props} />

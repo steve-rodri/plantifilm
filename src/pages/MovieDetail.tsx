@@ -1,4 +1,4 @@
-import { Text, SimpleGrid, AspectRatio } from "@mantine/core"
+import { Text, SimpleGrid, AspectRatio, MediaQuery } from "@mantine/core"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import { useEffect, useMemo } from "react"
@@ -31,25 +31,27 @@ export const MovieDetail = () => {
   if (query.isError)
     return <Text>{`Error loading movie: ${query.error.message}`}</Text>
   return (
-    <SimpleGrid
-      h="calc(100vh - 120px)"
-      py={50}
-      sx={{
-        gridAutoFlow: "column",
-        gridTemplateColumns: "1fr 1fr"
-      }}
+    <MediaQuery
+      largerThan="md"
+      styles={{ gridAutoFlow: "column", gridTemplateColumns: "1fr 1fr" }}
     >
-      {query.isLoading ? (
-        <Skeleton style={{ height: "100%", width: "100%" }} />
-      ) : (
-        <AspectRatio ratio={1920 / 1080}>
-          <img
-            src={query.data.backdrop}
-            style={{ objectFit: "cover", height: "full" }}
-          />
-        </AspectRatio>
-      )}
-      <Detail query={query} />
-    </SimpleGrid>
+      <SimpleGrid h="calc(100vh - 120px)" py={50}>
+        {query.isLoading ? (
+          <Skeleton style={{ height: "100%", width: "100%" }} />
+        ) : (
+          <AspectRatio ratio={1920 / 1080}>
+            <img
+              src={query.data.backdrop}
+              style={{
+                objectFit: "cover",
+                height: "full",
+                borderRadius: "12px"
+              }}
+            />
+          </AspectRatio>
+        )}
+        <Detail query={query} />
+      </SimpleGrid>
+    </MediaQuery>
   )
 }

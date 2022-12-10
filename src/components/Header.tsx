@@ -1,14 +1,30 @@
-import { Flex, Stack, Title } from "@mantine/core"
+import { Flex, MediaQuery, Stack, Title } from "@mantine/core"
 import { Link } from "react-router-dom"
 
 import { Search } from "./Search"
 
-export const Header = (props: Props) => {
+export const Header = () => {
   return (
-    <Flex w="full" h="100px" align="center" justify="space-between">
-      <HeaderTitle />
-      <Search />
-    </Flex>
+    <MediaQuery
+      smallerThan="xs"
+      styles={{
+        flexDirection: "column",
+        alignItems: "space-between",
+        justify: "center",
+        height: "165px"
+      }}
+    >
+      <Flex
+        w="full"
+        py={20}
+        align="center"
+        justify="space-between"
+        sx={{ borderBottom: "2px solid lightgray" }}
+      >
+        <HeaderTitle />
+        <Search />
+      </Flex>
+    </MediaQuery>
   )
 }
 

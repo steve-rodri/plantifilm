@@ -17,7 +17,7 @@ export const Home = () => {
   if (query.isError)
     return <Text>{`Error loading movies: ${query.error.message}`}</Text>
   return (
-    <Stack spacing={30}>
+    <Stack spacing={30} my={20}>
       {query.isLoading ? skeletonLists() : moviesByGenre(query)}
     </Stack>
   )
