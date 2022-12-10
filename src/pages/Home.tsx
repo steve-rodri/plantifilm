@@ -3,20 +3,21 @@ import { useQuery } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 
 import { MovieList } from "../components"
-import { MoviesByGenre } from "../types"
-import { getMoviesByGenre } from "../utils"
+import { Movie } from "../types"
+import { getMovies, filterMoviesByGenre } from "../utils"
 
 export const Home = () => {
-  const query = useQuery<MoviesByGenre, AxiosError>({
+  const query = useQuery<Movie[], AxiosError>({
     queryKey: ["movies"],
-    queryFn: async () => getMoviesByGenre()
+    queryFn: getMovies
   })
   if (query.isLoading) return <Loader />
   if (query.isError)
     return <Text>{`Error loading movies: ${query.error.message}`}</Text>
+  const moviesByGenre = filterMoviesByGenre(query.data)
   return (
     <Stack>
-      {Object.entries(query.data).map(([genre, movies]) => (
+      {Object.entries(moviesByGenre).map(([genre, movies]) => (
         <MovieList
           key={genre}
           genre={genre}

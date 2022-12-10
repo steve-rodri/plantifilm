@@ -10,7 +10,7 @@ export const Layout = () => {
         w="full"
         maw="1080px"
         mx="auto"
-        sx={{ alignItems: "center" }}
+        sx={{ alignItems: "center", gap: 0 }}
         px={10}
       >
         <Header />

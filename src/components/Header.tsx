@@ -1,4 +1,5 @@
 import { Flex, Stack, Title } from "@mantine/core"
+import { Link } from "react-router-dom"
 
 import { Search } from "./Search"
 
@@ -13,9 +14,11 @@ export const Header = () => {
 
 const HeaderTitle = () => {
   return (
-    <Stack spacing={1} align="center">
-      <Title order={2}>WOOKIE</Title>
-      <Title order={2}>MOVIES</Title>
-    </Stack>
+    <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+      <Stack spacing={1} align="center">
+        <Title order={2}>WOOKIE</Title>
+        <Title order={2}>MOVIES</Title>
+      </Stack>
+    </Link>
   )
 }

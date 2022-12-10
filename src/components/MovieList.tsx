@@ -31,11 +31,11 @@ export const MovieList = ({ genre, movies, isLoading }: Props) => {
   )
 }
 
-const MovieCard = ({ id, backdrop, title }: Movie) => {
+const MovieCard = ({ slug, backdrop, title }: Movie) => {
   const navigate = useNavigate()
   return (
     <img
-      onClick={() => navigate(`/movies/${id}`)}
+      onClick={() => navigate(`/movies/${slug}`)}
       src={backdrop}
       alt={title}
       style={{
