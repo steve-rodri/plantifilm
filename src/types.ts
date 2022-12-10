@@ -13,3 +13,7 @@ export interface Movie {
   slug: string
   title: string
 }
+
+export interface MoviesByGenre {
+  [key: string]: Movie[]
+}
