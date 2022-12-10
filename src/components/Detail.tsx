@@ -27,7 +27,11 @@ const DetailHeader = ({ query }: Props) => {
   ) : (
     <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
       <Title order={2}>{query.data?.title}</Title>
-      <Rating value={query.data?.imdb_rating} fractions={2} readOnly />
+      <Rating
+        value={query.data?.imdb_rating ? query.data.imdb_rating / 2 : 0}
+        fractions={2}
+        readOnly
+      />
     </Flex>
   )
 }
