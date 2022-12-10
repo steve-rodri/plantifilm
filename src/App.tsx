@@ -1,7 +1,8 @@
 import { MantineProvider } from "@mantine/core"
 import { Routes, Route } from "react-router-dom"
 
-import { Layout, Home, MovieDetail } from "./components"
+import { Layout } from "./components"
+import { Home, MovieDetail } from "./pages"
 
 const App = () => {
   return (
