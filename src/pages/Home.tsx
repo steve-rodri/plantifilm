@@ -1,5 +1,5 @@
-import { Text, Loader, Stack } from "@mantine/core"
-import { useQuery } from "@tanstack/react-query"
+import { Text, Stack } from "@mantine/core"
+import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import { useSearchParams } from "react-router-dom"
 
@@ -14,20 +14,30 @@ export const Home = () => {
     queryKey: ["movies", search],
     queryFn: async ({ queryKey }) => getMovies(queryKey)
   })
-  if (query.isLoading) return <Loader />
   if (query.isError)
     return <Text>{`Error loading movies: ${query.error.message}`}</Text>
-  const moviesByGenre = filterMoviesByGenre(query.data)
   return (
-    <Stack>
-      {Object.entries(moviesByGenre).map(([genre, movies]) => (
-        <MovieList
-          key={genre}
-          genre={genre}
-          movies={movies}
-          isLoading={query.isLoading}
-        />
-      ))}
+    <Stack spacing={30}>
+      {query.isLoading ? skeletonLists() : moviesByGenre(query)}
     </Stack>
   )
+}
+
+const skeletonLists = () => {
+  return Array.from(Array(10).keys()).map(key => (
+    <MovieList key={key} genre="" movies={[]} isLoading />
+  ))
+}
+
+const moviesByGenre = (query: UseQueryResult<Movie[], AxiosError>) => {
+  if (!query.data) return null
+  const movies = filterMoviesByGenre(query.data)
+  return Object.entries(movies).map(([genre, movies]) => (
+    <MovieList
+      key={genre}
+      genre={genre}
+      movies={movies}
+      isLoading={query.isLoading}
+    />
+  ))
 }

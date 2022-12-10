@@ -1,7 +1,8 @@
-import { Text, Loader, SimpleGrid, AspectRatio } from "@mantine/core"
+import { Text, SimpleGrid, AspectRatio } from "@mantine/core"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import { useEffect, useMemo } from "react"
+import Skeleton from "react-loading-skeleton"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 
 import { Detail } from "../components"
@@ -27,7 +28,6 @@ export const MovieDetail = () => {
     if (search) navigate(`/?q=${search}`)
   }, [search])
 
-  if (query.isLoading) return <Loader />
   if (query.isError)
     return <Text>{`Error loading movie: ${query.error.message}`}</Text>
   return (
@@ -39,13 +39,17 @@ export const MovieDetail = () => {
         gridTemplateColumns: "1fr 1fr"
       }}
     >
-      <AspectRatio ratio={1920 / 1080}>
-        <img
-          src={query.data.backdrop}
-          style={{ objectFit: "cover", height: "full" }}
-        />
-      </AspectRatio>
-      <Detail {...query.data} />
+      {query.isLoading ? (
+        <Skeleton style={{ height: "100%", width: "100%" }} />
+      ) : (
+        <AspectRatio ratio={1920 / 1080}>
+          <img
+            src={query.data.backdrop}
+            style={{ objectFit: "cover", height: "full" }}
+          />
+        </AspectRatio>
+      )}
+      <Detail query={query} />
     </SimpleGrid>
   )
 }

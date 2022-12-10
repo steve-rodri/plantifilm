@@ -1,5 +1,7 @@
-import { Title, Box, Loader } from "@mantine/core"
+import { Title, Box } from "@mantine/core"
+import Skeleton from "react-loading-skeleton"
 import { useNavigate } from "react-router-dom"
+import "react-loading-skeleton/dist/skeleton.css"
 
 import { Movie } from "../types"
 
@@ -10,10 +12,11 @@ interface Props {
 }
 
 export const MovieList = ({ genre, movies, isLoading }: Props) => {
-  if (isLoading) return <Loader />
   return (
     <Box>
-      <Title order={3}>{genre}</Title>
+      <Title order={3}>
+        {isLoading ? <Skeleton style={{ maxWidth: "15%" }} /> : genre}
+      </Title>
       <div
         style={{
           display: "flex",
@@ -23,12 +26,23 @@ export const MovieList = ({ genre, movies, isLoading }: Props) => {
           msOverflowStyle: "none"
         }}
       >
-        {movies?.map(movie => (
-          <MovieCard key={movie.id} {...movie} />
-        ))}
+        {isLoading
+          ? skeletonCards()
+          : movies?.map(movie => <MovieCard key={movie.id} {...movie} />)}
       </div>
     </Box>
   )
+}
+
+const skeletonCards = () => {
+  return Array.from(Array(4).keys()).map(key => (
+    <Skeleton
+      key={key}
+      width="250px"
+      height="140px"
+      style={{ margin: "5px" }}
+    />
+  ))
 }
 
 const MovieCard = ({ slug, backdrop, title }: Movie) => {
