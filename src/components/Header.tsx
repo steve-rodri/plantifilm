@@ -1,15 +1,13 @@
-import { Flex, SimpleGrid, Stack, Title } from "@mantine/core"
+import { Flex, Stack, Title } from "@mantine/core"
 
 import { Search } from "./Search"
 
 export const Header = () => {
   return (
-    <SimpleGrid w="full" maw="1080px" mx="auto" sx={{ alignItems: "center" }}>
-      <Flex w="full" h="100px" align="center" justify="space-between" px="10px">
-        <HeaderTitle />
-        <Search />
-      </Flex>
-    </SimpleGrid>
+    <Flex w="full" h="100px" align="center" justify="space-between">
+      <HeaderTitle />
+      <Search />
+    </Flex>
   )
 }
 

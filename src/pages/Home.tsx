@@ -1,5 +1,11 @@
-import { Box } from "@mantine/core"
+import { Stack } from "@mantine/core"
+
+import { MovieList } from "../components"
 
 export const Home = () => {
-  return <Box />
+  return (
+    <Stack>
+      <MovieList />
+    </Stack>
+  )
 }
