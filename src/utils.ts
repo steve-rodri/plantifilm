@@ -15,10 +15,11 @@ export const getMovie = async (queryKey: QueryKey) => {
   return resp.data
 }
 
-export const getMovies = async () => {
+export const getMovies = async (queryKey: QueryKey) => {
+  const search = queryKey[1]
   const resp = await axios({
     method: "GET",
-    url: "https://wookie.codesubmit.io/movies",
+    url: `https://wookie.codesubmit.io/movies${search ? `?q=${search}` : ""}`,
     headers: {
       Authorization: "Bearer Wookie2021"
     }

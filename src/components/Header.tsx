@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import { Search } from "./Search"
 
-export const Header = () => {
+export const Header = (props: Props) => {
   return (
     <Flex w="full" h="100px" align="center" justify="space-between">
       <HeaderTitle />
