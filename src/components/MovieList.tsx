@@ -1,4 +1,5 @@
 import { Title, Box } from "@mantine/core"
+import { useState } from "react"
 import Skeleton from "react-loading-skeleton"
 import { useNavigate } from "react-router-dom"
 import "react-loading-skeleton/dist/skeleton.css"
@@ -35,31 +36,33 @@ export const MovieList = ({ genre, movies, isLoading }: Props) => {
 }
 
 const skeletonCards = () => {
-  return Array.from(Array(4).keys()).map(key => (
-    <Skeleton
-      key={key}
-      width="250px"
-      height="140px"
-      style={{ margin: "5px" }}
-    />
-  ))
+  return Array.from(Array(4).keys()).map(key => <SkeletonCard key={key} />)
 }
+
+const SkeletonCard = () => (
+  <Skeleton width="250px" height="140px" style={{ margin: "5px" }} />
+)
 
 const MovieCard = ({ slug, backdrop, title }: Movie) => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
   return (
-    <img
-      onClick={() => navigate(`/movies/${slug}`)}
-      src={backdrop}
-      alt={title}
-      style={{
-        width: "250px",
-        height: "140px",
-        margin: "5px",
-        borderRadius: "10px",
-        boxShadow: "0 3px 3px 2px #ddd",
-        cursor: "pointer"
-      }}
-    />
+    <>
+      {loading && <SkeletonCard />}
+      <img
+        onLoad={() => setLoading(false)}
+        onClick={() => navigate(`/movies/${slug}`)}
+        src={backdrop}
+        alt={title}
+        style={{
+          width: "250px",
+          height: "140px",
+          margin: "5px",
+          borderRadius: "10px",
+          boxShadow: "0 3px 3px 2px #ddd",
+          cursor: "pointer"
+        }}
+      />
+    </>
   )
 }
