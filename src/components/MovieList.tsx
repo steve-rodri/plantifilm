@@ -57,7 +57,8 @@ const MovieCard = ({ slug, backdrop, title }: Movie) => {
         height: "140px",
         margin: "5px",
         borderRadius: "10px",
-        boxShadow: "0 3px 3px 2px #ddd"
+        boxShadow: "0 3px 3px 2px #ddd",
+        cursor: "pointer"
       }}
     />
   )
