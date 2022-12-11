@@ -8,6 +8,12 @@ vi.mock("../utils/extractAndSortUniqueGenres", () => {
 })
 
 describe("filterMoviesByGenre", () => {
+  describe("Given an undefined parameter", () => {
+    it("should return an object", () => {
+      const result = filterMoviesByGenre(undefined)
+      expect(result).toEqual({})
+    })
+  })
   describe("Given an array with 1 movie", () => {
     describe("it should return an object", () => {
       it("whose keys are comprised of unique names of genres", () => {
