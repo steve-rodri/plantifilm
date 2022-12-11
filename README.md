@@ -1,11 +1,6 @@
 # Plantifilm - movie streaming dashboard (TypeScript and React)
 
-## Brief
-
-You are the owner of a movie theater in **Thikkiiana City,** on the Wookiee homeworld of Kashyyyk. Your customers are bored with the never changing selection and are asking for something completely different - they want to see what's playing on Earth. Wookies are the main exporter of Computer Technology for the New Republic so naturally you roll up your sleeves and get to work. You quickly scribble down some notes and after a few hours of relentless work you have a design in mind.
-
-## Tasks
-
+*TODO:*
 - Implement assignment using:
   - Language: **TypeScript**
   - Framework: **React**
@@ -17,25 +12,37 @@ You are the owner of a movie theater in **Thikkiiana City,** on the Wookiee home
 - Implement a detail view for the movies in the list
 - Make sure that linking to specific detail pages & search results works as expected
 
-## Deliverables
+### [Click here to see the Live Demo](https://plantifilm.vercel.app)
 
-Make sure to include all source code in the repository.
+## Screenshots
+![Home](/Designs/final/Home.png "Home")
+![Movie Detail](/Designs/final/Detail.png "Movie Detail")
 
-## Evaluation Criteria
 
-- **TypeScript** best practices
-- We're looking for you to produce working code, with enough room to demonstrate how to structure components in a small program.
-- Show us your work through your commit history
-- Completeness: did you complete the features?
-- Correctness: does the functionality act in sensible, thought-out ways?
-- Maintainability: is it written in a clean, maintainable way?
-- Testing: is the system adequately tested?
+## Libraries / Tools Used
 
-## CodeSubmit
+- Create Vite App for project setup
+- Mantine for components
+- Tanstack Query
+- Vitest and Cypress for tests
 
-Please organize, design, test and document your code as if it were
-going into production - then push your changes to the master branch. After you have pushed your code, you may submit the assignment on the assignment page.
+## Setup
 
-All the best and happy coding,
+To install the dependencies run:
 
-The Plantiful Team
+`yarn`
+
+And to run the app:
+
+`yarn dev`
+
+
+## Running the tests
+
+You can run the unit tests using:
+
+`yarn test`
+
+You can run the end to end tests using:
+
+`yarn cypress open`
