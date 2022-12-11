@@ -8,12 +8,16 @@ import { MovieList } from "../components"
 import { Movie } from "../types"
 import { filterMoviesByGenre } from "../utils"
 
+const oneDay = 1000 * 60 * 60 * 24 // 24 hours
+
 export const Home = () => {
   const [searchParams] = useSearchParams()
   const search = searchParams.get("q")
   const query = useQuery<Movie[], AxiosError>({
     queryKey: ["movies", search],
-    queryFn: async ({ queryKey }) => getMovies(queryKey)
+    queryFn: async ({ queryKey }) => getMovies(queryKey),
+    networkMode: "offlineFirst",
+    staleTime: oneDay
   })
   if (query.isError)
     return <Text>{`Error loading movies: ${query.error.message}`}</Text>

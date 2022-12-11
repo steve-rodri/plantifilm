@@ -9,6 +9,8 @@ import { getMovie } from "../api"
 import { Detail } from "../components"
 import { Movie } from "../types"
 
+const oneDay = 1000 * 60 * 60 * 24 // 24 hours
+
 export const MovieDetail = () => {
   const { slug } = useParams()
   const [searchParams] = useSearchParams()
@@ -17,6 +19,8 @@ export const MovieDetail = () => {
   const query = useQuery<Movie, AxiosError>({
     queryKey: ["movies", slug],
     queryFn: async ({ queryKey }) => getMovie(queryKey),
+    staleTime: oneDay,
+    networkMode: "offlineFirst",
     initialData: () => {
       const movies = queryClient.getQueryData<Movie[]>(["movies"])
       return movies?.find((movie: Movie) => movie.slug === slug)
