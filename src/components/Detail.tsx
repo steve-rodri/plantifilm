@@ -26,11 +26,14 @@ const DetailHeader = ({ query }: Props) => {
     <Skeleton height="30px" />
   ) : (
     <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
-      <Title order={2}>{query.data?.title}</Title>
+      <Title order={2} data-cy="movie-detail-title">
+        {query.data?.title}
+      </Title>
       <Rating
         value={query.data?.imdb_rating ? query.data.imdb_rating / 2 : 0}
         fractions={2}
         readOnly
+        data-cy="movie-detail-rating"
       />
     </Flex>
   )
@@ -43,7 +46,7 @@ const DetailSubHeader = ({ query }: Props) => {
     return director
   }
   return (
-    <Box>
+    <Box data-cy="movie-detail-subheader">
       <Text>
         {query.isLoading ? (
           <Skeleton />
@@ -66,7 +69,7 @@ const DetailSubHeader = ({ query }: Props) => {
 
 const Description = ({ query }: Props) => {
   return (
-    <Text>
+    <Text data-cy="movie-detail-description">
       {query.isLoading ? <Skeleton height="200px" /> : query.data?.overview}
     </Text>
   )

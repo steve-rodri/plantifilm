@@ -35,13 +35,14 @@ export const MovieDetail = () => {
       largerThan="md"
       styles={{ gridAutoFlow: "column", gridTemplateColumns: "1fr 1fr" }}
     >
-      <SimpleGrid h="calc(100vh - 120px)" py={50}>
+      <SimpleGrid h="calc(100vh - 120px)" py={50} data-cy="movie-detail">
         {query.isLoading ? (
           <Skeleton style={{ height: "100%", width: "100%" }} />
         ) : (
           <AspectRatio ratio={1920 / 1080}>
             <img
               src={query.data.backdrop}
+              data-cy="movie-detail-img"
               style={{
                 objectFit: "cover",
                 height: "full",
