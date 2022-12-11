@@ -19,6 +19,7 @@ export const Search = () => {
   return (
     <form onSubmit={onSubmit}>
       <TextInput
+        data-testid="search-input"
         placeholder="search..."
         icon={<IconSearch />}
         {...inputProps}

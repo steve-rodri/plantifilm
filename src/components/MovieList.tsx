@@ -29,7 +29,9 @@ export const MovieList = ({ genre, movies, isLoading }: Props) => {
       >
         {isLoading
           ? skeletonCards()
-          : movies?.map(movie => <MovieCard key={movie.id} {...movie} />)}
+          : movies?.map((movie, i) => (
+              <MovieCard index={i} key={movie.id} {...movie} />
+            ))}
       </div>
     </Box>
   )
@@ -43,7 +45,11 @@ const SkeletonCard = () => (
   <Skeleton width="250px" height="140px" style={{ margin: "5px" }} />
 )
 
-const MovieCard = ({ slug, backdrop, title }: Movie) => {
+interface MovieWithIndex extends Movie {
+  index: number
+}
+
+const MovieCard = ({ slug, backdrop, title, index }: MovieWithIndex) => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
   return (
@@ -52,6 +58,7 @@ const MovieCard = ({ slug, backdrop, title }: Movie) => {
       <img
         onLoad={() => setLoading(false)}
         onClick={() => navigate(`/movies/${slug}`)}
+        data-testid={`movie-card-${index}`}
         src={backdrop}
         alt={title}
         style={{
