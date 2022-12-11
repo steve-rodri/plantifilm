@@ -50,6 +50,7 @@ export const MovieDetail = () => {
               style={{
                 objectFit: "cover",
                 height: "full",
+                maxHeight: "700px",
                 borderRadius: "12px"
               }}
             />

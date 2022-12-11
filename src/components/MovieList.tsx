@@ -1,10 +1,8 @@
 import { Title, Box } from "@mantine/core"
-import { useState } from "react"
 import Skeleton from "react-loading-skeleton"
-import { useNavigate } from "react-router-dom"
-import "react-loading-skeleton/dist/skeleton.css"
 
 import { Movie } from "../types"
+import { MovieCard, SkeletonCard } from "./MovieCard"
 
 interface Props {
   genre: string | undefined
@@ -27,49 +25,15 @@ export const MovieList = ({ genre, movies, isLoading }: Props) => {
           msOverflowStyle: "none"
         }}
       >
-        {isLoading
-          ? skeletonCards()
-          : movies?.map((movie, i) => (
-              <MovieCard index={i} key={movie.id} {...movie} />
-            ))}
+        {isLoading ? skeletonCards() : movieCards(movies)}
       </div>
     </Box>
   )
 }
 
+const movieCards = (movies: Movie[] | undefined) =>
+  movies?.map((movie, i) => <MovieCard index={i} key={movie.id} {...movie} />)
+
 const skeletonCards = () => {
   return Array.from(Array(4).keys()).map(key => <SkeletonCard key={key} />)
-}
-
-const SkeletonCard = () => (
-  <Skeleton width="250px" height="140px" style={{ margin: "5px" }} />
-)
-
-interface MovieWithIndex extends Movie {
-  index: number
-}
-
-const MovieCard = ({ slug, backdrop, title, index }: MovieWithIndex) => {
-  const navigate = useNavigate()
-  const [loading, setLoading] = useState(true)
-  return (
-    <>
-      {loading && <SkeletonCard />}
-      <img
-        onLoad={() => setLoading(false)}
-        onClick={() => navigate(`/movies/${slug}`)}
-        data-testid={`movie-card-${index}`}
-        src={backdrop}
-        alt={title}
-        style={{
-          width: "250px",
-          height: "140px",
-          margin: "5px",
-          borderRadius: "10px",
-          boxShadow: "0 3px 3px 2px #ddd",
-          cursor: "pointer"
-        }}
-      />
-    </>
-  )
 }
