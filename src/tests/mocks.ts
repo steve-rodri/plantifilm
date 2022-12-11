@@ -1,4 +1,4 @@
-const movieMock = {
+export const movieMock = {
   backdrop:
     "https://wookie.codesubmit.io/static/backdrops/d6822b7b-48bb-4b78-ad5e-9ba04c517ec8.jpg",
   cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
@@ -15,4 +15,23 @@ const movieMock = {
   released_on: "2008-07-16T00:00:00",
   slug: "the-dark-knight-2008",
   title: "The Dark Knight"
+}
+
+export const movieMock2 = {
+  backdrop:
+    "https://wookie.codesubmit.io/static/backdrops/a9d94d6e-4cab-44a9-8eec-d44ad6332b6d.jpg",
+  cast: ["John Travolta", "Uma Thurman", "Samuel L. Jackson"],
+  classification: "18+",
+  director: "Quentin Tarantino",
+  genres: ["Crime", "Drama"],
+  id: "a9d94d6e-4cab-44a9-8eec-d44ad6332b6d",
+  imdb_rating: 8.9,
+  length: "2h 34min",
+  overview:
+    "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
+  poster:
+    "https://wookie.codesubmit.io/static/posters/a9d94d6e-4cab-44a9-8eec-d44ad6332b6d.jpg",
+  released_on: "1994-09-10T00:00:00",
+  slug: "pulp-fiction-1994",
+  title: "Pulp Fiction"
 }

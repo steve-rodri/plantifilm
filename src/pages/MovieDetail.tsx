@@ -5,9 +5,9 @@ import { useEffect, useMemo } from "react"
 import Skeleton from "react-loading-skeleton"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 
+import { getMovie } from "../api"
 import { Detail } from "../components"
 import { Movie } from "../types"
-import { getMovie } from "../utils"
 
 export const MovieDetail = () => {
   const { slug } = useParams()

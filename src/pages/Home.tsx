@@ -3,9 +3,10 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 import { useSearchParams } from "react-router-dom"
 
+import { getMovies } from "../api"
 import { MovieList } from "../components"
 import { Movie } from "../types"
-import { getMovies, filterMoviesByGenre } from "../utils"
+import { filterMoviesByGenre } from "../utils"
 
 export const Home = () => {
   const [searchParams] = useSearchParams()
